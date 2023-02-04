@@ -11,8 +11,8 @@ module.exports = {
       method: "GET",
       url: "https://dad-jokes.p.rapidapi.com/random/joke",
       headers: {
-        "X-RapidAPI-Key": process.env.DadJokeApiKey,
-        "X-RapidAPI-Host": process.env.DadJokeHost,
+        "X-RapidAPI-Key": process.env['DadJokeApiKey'],
+        "X-RapidAPI-Host": process.env['DadJokeHost'],
       },
     };
 

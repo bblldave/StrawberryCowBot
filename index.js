@@ -49,4 +49,4 @@ for (const file of eventFiles) {
 }
 
 keepAlive();
-client.login(process.env.token);
+client.login(process.env['token']);
