@@ -5,6 +5,7 @@ var list = require("badwords-list"),
 module.exports = {
   name: Events.MessageCreate,
   async execute(message) {
+    if (message.author.bot) return;
     let messageWords = message.content.split(" ");
     let isProfanity = badwords.some((word) => messageWords.includes(word));
     if (isProfanity) {
