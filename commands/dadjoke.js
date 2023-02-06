@@ -5,24 +5,23 @@ module.exports = {
     .setName("dadjoke")
     .setDescription("Tells a random dad joke."),
   async execute(interaction) {
-    const result = await getDadJoke();
-    if (!result.ok) {
-      await interaction.reply(
-        `I don't know any dad jokes right now. Try again in a few minutes.`
-      );
-      return;
-    }
-    const data = await result.json();
-    const joke = data.joke;
-    await interaction.reply(`${joke}`).then(async () => {
-      if (isProfanity(`${joke}`)) {
-        await interaction.deleteReply().then(async () => {
-          await interaction.channel.send(
-            "The joke contained profanity and was removed. Please try again."
-          );
-        });
+    let isCleanJoke = false;
+    let joke = "";
+    while (!isCleanJoke) {
+      let result = await getDadJoke();
+      if (!result.ok) {
+        await interaction.reply(
+          `I don't know any dad jokes right now. Try again in a few minutes.`
+        );
+        return;
       }
-    });
+      const data = await result.json();
+      joke = data.joke;
+      if (!isProfanity(`${joke}`)) {
+        isCleanJoke = true;
+      }
+    }
+    await interaction.reply(`${joke}`);
   },
 };
 
