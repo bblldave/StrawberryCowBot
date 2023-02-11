@@ -11,6 +11,10 @@ const PollQuestion = sequelize.define("PollQuestion", {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  name: {
+    type: DataTypes.STRING,
+    allowNull: true
+  }
 });
 
 module.exports = PollQuestion;
