@@ -1,0 +1,10 @@
+const dataContext = require("../Data/dataContext");
+const { Events } = require("discord.js");
+
+module.exports = {
+  name: Events.MessageCreate,
+  async execute(message) {
+    if (message.author.bot) return;
+    dataContext.addBalance(message.author.id, 1);
+  },
+};
