@@ -6,17 +6,18 @@ module.exports = {
     if (!interaction.isModalSubmit()) return;
     if (interaction.customId === "testerApplication") {
       const patternApplicationChannel =
-        interaction.member.guild.channels.cache.get("1075982628286648382");
+        interaction.member.guild.channels.cache.get("1075978318949658664");
       const message = createMessage(interaction);
 
       await patternApplicationChannel
         .send(message)
         .then((message) =>
-          interaction.reply(
-            `Application submitted successfully. 
-             The Tester role will be given to you if you are selected.
-            `
-          )
+          interaction.reply({
+            content: `Application submitted successfully. 
+            The Tester role will be given to you if you are selected.
+           `,
+            ephemeral: true,
+          })
         )
         .catch(console.error);
     }
