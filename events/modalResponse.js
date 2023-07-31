@@ -6,7 +6,7 @@ module.exports = {
     if (!interaction.isModalSubmit()) return;
     if (interaction.customId === "testerApplication") {
       const patternApplicationChannel =
-        interaction.member.guild.channels.cache.get("1075982628286648382");
+        interaction.member.guild.channels.cache.get(process.env.TEST_APPLICATION_CHANNEL);
       const message = createMessage(interaction);
 
       await patternApplicationChannel
