@@ -1,0 +1,29 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup SSH and known_hosts
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: SSH and deploy
+        run: |
+          ssh -o StrictHostKeyChecking=no github@193.43.134.56 <<EOF
+          cd StrawberryCowBot/StrawberryCowBot
+          pm2 stop StrawberryCowBot
+          git pull origin main
+          npm install
+          pm2 start StrawberryCowBot
+          EOF
