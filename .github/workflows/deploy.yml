@@ -20,8 +20,8 @@ jobs:
 
       - name: SSH and deploy
         run: |
-          ssh -o StrictHostKeyChecking=no github@193.43.134.56 <<EOF
-          cd StrawberryCowBot/StrawberryCowBot
+          ssh -o StrictHostKeyChecking=no root@193.43.134.56 <<EOF
+          cd /StrawberryCowBot/StrawberryCowBot
           pm2 stop StrawberryCowBot
           git pull origin main
           npm install
